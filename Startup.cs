@@ -1,12 +1,9 @@
 ﻿using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Routing;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Hosting.Server.Features;
-using Microsoft.AspNetCore.Http.Extensions;
 using Microsoft.Extensions.Configuration;
+using RoutingSample.APIRoutes;
 
 
 namespace RoutingSample
@@ -15,9 +12,12 @@ namespace RoutingSample
     {
         public Startup(IHostingEnvironment env)
         {
-            Configuration = new ConfigurationBuilder()
-                .AddEnvironmentVariables()
-                .Build();
+            var builder = new ConfigurationBuilder()
+                .SetBasePath(env.ContentRootPath)
+                .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
+                .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true)
+                .AddEnvironmentVariables();
+            Configuration = builder.Build();
         }
 
         public IConfigurationRoot Configuration { get; private set; }
@@ -27,27 +27,20 @@ namespace RoutingSample
             services.AddRouting();
         }
 
-        // Routes must configured in Configure
         public void Configure(IApplicationBuilder app, ILoggerFactory loggerFactory)
         {
-
             loggerFactory.AddConsole();
+            //loggerFactory.AddConsole(Configuration.GetSection("Logging"));
+            //loggerFactory.AddDebug();
+        
+            //Create DB on startup
+            //using (var serviceScope = app.ApplicationServices.GetRequiredService<IServiceScopeFactory>().CreateScope())
+            //{
+                //serviceScope.ServiceProvider.GetService<ApplicationDbContext>().Database.Migrate();
+            //}
 
-            var serverAddressesFeature = app.ServerFeatures.Get<IServerAddressesFeature>();
-
-            var routeBuilder = new RouteBuilder(app);
-
-            routeBuilder.MapGet("hello/{name}", context =>
-            {
-                var name = context.GetRouteValue("name");
-                // This is the route handler when HTTP GET "hello/<anything>"  matches
-                // To match HTTP GET "hello/<anything>/<anything>, 
-                // use routeBuilder.MapGet("hello/{*name}"
-                return context.Response.WriteAsync($"Hi, {name}!");
-            });            
-
-            var routes = routeBuilder.Build();
-            app.UseRouter(routes);
+            var r = new Router().Routes(app);
+            app.UseRouter(r);
         }
     }
 }
