@@ -4,6 +4,8 @@ using Microsoft.Extensions.Logging;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using RoutingSample.APIRoutes;
+using RoutingSample.Models;
+using Microsoft.EntityFrameworkCore;
 
 
 namespace RoutingSample
@@ -25,6 +27,7 @@ namespace RoutingSample
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddRouting();
+            services.AddDbContext<ApplicationDbContext>();
         }
 
         public void Configure(IApplicationBuilder app, ILoggerFactory loggerFactory)
@@ -34,10 +37,10 @@ namespace RoutingSample
             //loggerFactory.AddDebug();
         
             //Create DB on startup
-            //using (var serviceScope = app.ApplicationServices.GetRequiredService<IServiceScopeFactory>().CreateScope())
-            //{
-                //serviceScope.ServiceProvider.GetService<ApplicationDbContext>().Database.Migrate();
-            //}
+            using (var serviceScope = app.ApplicationServices.GetRequiredService<IServiceScopeFactory>().CreateScope())
+            {
+                 serviceScope.ServiceProvider.GetService<ApplicationDbContext>().Database.Migrate();
+            }
 
             var r = new Router().Routes(app);
             app.UseRouter(r);

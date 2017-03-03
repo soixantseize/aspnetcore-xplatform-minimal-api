@@ -9,9 +9,10 @@ namespace RoutingSample.Models
     public class ApplicationDbContext : DbContext
     {
         public ApplicationDbContext() : base()
-        {
+        { }
 
-        }
+        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
+        { }
 
         private DbSet<StoredValue> StoredValues{ get; set; }
 
