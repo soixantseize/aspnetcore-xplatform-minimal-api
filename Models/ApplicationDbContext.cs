@@ -19,8 +19,9 @@ namespace RoutingSample.Models
         protected override void OnConfiguring(DbContextOptionsBuilder builder)
         {
             string dbName = Environment.GetEnvironmentVariable("POSTGRES_DB") ?? "localhost";
+            string dbUser = Environment.GetEnvironmentVariable("POSTGRES_USER") ?? "postgres";
             string dbPassword = Environment.GetEnvironmentVariable("POSTGRES_PASSWORD") ?? "password";
-            string pgConStr = string.Format("Host={0};Port=5432;Database=myDataBase;User ID=postgres;Password={1}", dbName, dbPassword);
+            string pgConStr = string.Format("Host={0};Port=5432;Database=myDataBase;User ID={1};Password={2}", dbName, dbUser, dbPassword);
             builder.UseNpgsql(pgConStr);
             base.OnConfiguring(builder);
         }
