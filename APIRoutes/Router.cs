@@ -16,43 +16,65 @@ namespace RoutingSample.APIRoutes
 
             routeBuilder.MapGet("company", async context =>
             {
-                var values = await _Db.GetAll();
-                await HttpExtensions.WriteJson(context.Response, values);
+                var res = await _Db.GetAll();
+                await HttpExtensions.WriteJson(context.Response, res, StatusCodes.Status200OK);
             });
 
             routeBuilder.MapGet("company/{id:int}", async context =>
             {
-                var value = await _Db.Get(Convert.ToInt32(context.GetRouteValue("id")));
-                if (value == null)
-                {
-                   await context.Response.WriteAsync("not found"); 
-                }
-                await HttpExtensions.WriteJson(context.Response, value);
+                var res = await _Db.Get(Convert.ToInt32(context.GetRouteValue("id")));
+                if (res == null)
+                   await HttpExtensions.WriteJson(context.Response, "not found", StatusCodes.Status404NotFound);
+                else
+                   await HttpExtensions.WriteJson(context.Response, res, StatusCodes.Status200OK);
             });
 
             routeBuilder.MapPost("company", async context =>
             {
-                var newValue = await context.ReadFromJson<StoredValue>();
-                if (newValue == null) return;
-
-                //context.Response.StatusCode = 201;
-                await HttpExtensions.WriteJson(context.Response,  await _Db.Add(newValue));
+                var req = await context.ReadFromJson<StoredValue>();
+                if (req == null)
+                    await HttpExtensions.WriteJson(context.Response, "bad request", StatusCodes.Status400BadRequest);
+                else
+                {
+                    var res = await _Db.Add(req);
+                    if (res == null)
+                    {
+                        await HttpExtensions.WriteJson(context.Response, "bad request", StatusCodes.Status400BadRequest);
+                        return;
+                    }
+                        
+                    await HttpExtensions.WriteJson(context.Response,  res, StatusCodes.Status201Created);
+                }
             });
 
             routeBuilder.MapPut("company/{id:int}", async context =>
             {
-                var updatedValue = await context.ReadFromJson<StoredValue>();
-                if (updatedValue == null) return;
-
-                updatedValue.Id = Convert.ToInt32(context.GetRouteValue("id"));
-
-                await HttpExtensions.WriteJson(context.Response,  await _Db.Update(updatedValue));
+                var req = await context.ReadFromJson<StoredValue>();
+                if (req == null) 
+                    await HttpExtensions.WriteJson(context.Response, "bad request", StatusCodes.Status400BadRequest);
+                else
+                {
+                    req.Id = Convert.ToInt32(context.GetRouteValue("id"));
+                    var res = await _Db.Update(req);
+                    if (res == null)
+                    {
+                        await HttpExtensions.WriteJson(context.Response, "bad request", StatusCodes.Status400BadRequest);
+                        return;
+                    }
+                        
+                    await HttpExtensions.WriteJson(context.Response,  res, StatusCodes.Status200OK);
+                }
             });
 
             routeBuilder.MapDelete("company/{id:int}", async context =>
             {
-                await _Db.Delete(Convert.ToInt32(context.GetRouteValue("id")));
-                await context.Response.WriteAsync("404");
+                
+                var res = await _Db.Delete(Convert.ToInt32(context.GetRouteValue("id")));
+                if (res == null)
+                    await HttpExtensions.WriteJson(context.Response,  "bad request", StatusCodes.Status400BadRequest);
+                else 
+                    await HttpExtensions.WriteJson(context.Response,  res, StatusCodes.Status200OK);
+                
             });                   
 
             return  routeBuilder.Build();           

@@ -11,9 +11,10 @@ namespace RoutingSample.Helpers
     {
         private static readonly JsonSerializer Serializer = new JsonSerializer();
 
-        public static Task WriteJson<T>(this HttpResponse response, T obj)
+        public static Task WriteJson<T>(this HttpResponse response, T obj, int statuscode)
         {
             response.ContentType = "application/json";
+            response.StatusCode = statuscode;
             return response.WriteAsync(JsonConvert.SerializeObject(obj));
         }
 
@@ -30,8 +31,8 @@ namespace RoutingSample.Helpers
                     return obj;
                 }
 
-                httpContext.Response.StatusCode = 400;
-                await httpContext.Response.WriteJson(results);
+                //httpContext.Response.StatusCode = 400;
+                await httpContext.Response.WriteJson(results, 400);
 
                 return default(T);
             }
