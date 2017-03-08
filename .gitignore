@@ -1,0 +1,7 @@
+# Can ignore specific files
+project.lock.json
+
+# Can also ignore all directories and files in a directory.
+.vscode/**/* 
+bin/**/*
+obj/**/*
