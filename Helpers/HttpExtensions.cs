@@ -18,21 +18,21 @@ namespace RoutingSample.Helpers
             return response.WriteAsync(JsonConvert.SerializeObject(obj));
         }
 
-        public static async Task<T> ReadFromJson<T>(this HttpContext httpContext)
+        public static T ReadFromJson<T>(HttpContext httpContext)
         {
             using (var streamReader = new StreamReader(httpContext.Request.Body))
             using (var jsonTextReader = new JsonTextReader(streamReader))
             {
-                var obj = Serializer.Deserialize<T>(jsonTextReader);
-
-                var results = new List<ValidationResult>();
-                if (Validator.TryValidateObject(obj, new ValidationContext(obj), results))
+                if(jsonTextReader.Value != null)
                 {
-                    return obj;
-                }
+                     var obj = Serializer.Deserialize<T>(jsonTextReader);
 
-                //httpContext.Response.StatusCode = 400;
-                await httpContext.Response.WriteJson(results, 400);
+                    var results = new List<ValidationResult>();
+                    if (Validator.TryValidateObject(obj, new ValidationContext(obj), results))
+                    {
+                        return obj;
+                    }
+                }
 
                 return default(T);
             }
