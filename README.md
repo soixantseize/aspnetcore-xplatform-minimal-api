@@ -23,4 +23,6 @@ To run application
 3. Run command "dotnet restore"
 4. Run command "dotnet run"
 
+![alt text](https://github.com/hatoro/aspnetcore-routing-standalone/blob/master/postman_scr.jpg "postman_screenshot")
+
 
