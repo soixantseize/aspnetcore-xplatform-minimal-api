@@ -14,7 +14,7 @@ namespace RoutingSample.Models
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
         { }
 
-        private DbSet<StoredValue> StoredValues{ get; set; }
+        public DbSet<StoredValue> StoredValues{ get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder builder)
         {

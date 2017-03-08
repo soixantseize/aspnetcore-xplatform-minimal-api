@@ -39,7 +39,9 @@ namespace RoutingSample
             //Create DB on startup
             using (var serviceScope = app.ApplicationServices.GetRequiredService<IServiceScopeFactory>().CreateScope())
             {
-                 serviceScope.ServiceProvider.GetService<ApplicationDbContext>().Database.Migrate();
+                 var context = serviceScope.ServiceProvider.GetService<ApplicationDbContext>();
+                 context.Database.Migrate();
+                 context.EnsureSeedData();
             }
 
             var r = new Router().Routes(app);
