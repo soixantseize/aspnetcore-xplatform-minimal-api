@@ -6,7 +6,7 @@ An ASP.Net Core HTTP microservice that is lightweight, no MVC, and cross-platfor
 
 ###WHY
 
-I love the simplicity and portability of spinning up a RESTful app built on NodeJS and Express.  Imagine it was possible in .NET and we could leverage powerful features like Entity Framework, LINQ, and Async Await?  .NET Core now makes it possible!
+I love the simplicity and portability of spinning up a RESTful app built on NodeJS and Express.  Only to yearn for the possibility in .NET so that I could leverage powerful features like Entity Framework, LINQ, and Async Await.  Yo .NET Core now makes it possible!
 
 ###HOW
 
@@ -23,9 +23,9 @@ This project borrows heavily from the following repos:
 **Prerequisites**
 
 1. Install .NET Core  (https://www.microsoft.com/net/core)
-    * Successfully ran application on Windows (Windows7), Mac (OSX 10.11.13), and Linux (CentOS 7.2.1511)
+    * Successfull launches on Windows (Windows7), Mac (OSX 10.11.13), and Linux (CentOS 7.2.1511)
 2. PostgreSQL (https://www.postgresql.org/)
-    * Successfully tested CRUD on Windows (PostgreSQL 9.4.5) and Mac (PostgreSQL 9.5.2)
+    * Successfull CRUD operations on Windows (PostgreSQL 9.4.5) and Mac (PostgreSQL 9.5.2)
 3. Update lines 22 and 23 in the file aspnetcore-routing-standalone/Models/ApplicationDbContext.cs with your PostgreSQL user name and password
 
 To run application
