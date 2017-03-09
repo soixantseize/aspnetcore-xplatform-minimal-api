@@ -6,7 +6,7 @@ An ASP.Net Core HTTP microservice that is lightweight, no MVC, and cross-platfor
 
 ###WHY
 
-I love the simplicity and portability of spinning up a RESTful app built on NodeJS and Express.  Only to yearn for the possibility in .NET so that I could leverage powerful features like Entity Framework, LINQ, and Async Await.  Yo .NET Core now makes it possible!
+I loved the simplicity and portability of spinning up a RESTful app built on NodeJS and Express, only to yearn for the possibility in .NET so that I could leverage powerful features like Entity Framework, LINQ, and Async Await.  Yo .NET Core now makes it possible!
 
 ###HOW
 
