@@ -24,7 +24,7 @@ namespace AspNetCoreBlogService.Controllers
 
             routeBuilder.MapGet("blog/{id:int}", async context =>
             {
-                var res = _blogArticleRepository.GetById(Convert.ToInt32(context.GetRouteValue("id")));
+                var res = await _blogArticleRepository.GetById(Convert.ToInt32(context.GetRouteValue("id")));
                 if (res == null)
                    await HttpExtensions.WriteJson(context.Response, "not found", StatusCodes.Status404NotFound);
                 else
