@@ -3,7 +3,7 @@ using System.IO;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Builder;
 
-namespace RoutingSample
+namespace AspNetCoreBlogService
 {
     public class Program
     {

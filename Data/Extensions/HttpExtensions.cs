@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Threading.Tasks;
 using System.Collections.Generic;
 
-namespace RoutingSample.Helpers
+namespace AspNetCoreBlogService.Data.Extensions
 {
     public static class HttpExtensions
     {
@@ -18,7 +18,7 @@ namespace RoutingSample.Helpers
             return response.WriteAsync(JsonConvert.SerializeObject(obj));
         }
 
-        public static async Task<T> ReadFromJson<T>(this HttpContext httpContext)
+        public static T ReadFromJson<T>(this HttpContext httpContext)
         {
             using (var streamReader = new StreamReader(httpContext.Request.Body))
             using (var jsonTextReader = new JsonTextReader(streamReader))
@@ -30,9 +30,6 @@ namespace RoutingSample.Helpers
                 {
                     return obj;
                 }
-
-                //httpContext.Response.StatusCode = 400;
-                await httpContext.Response.WriteJson(results, 400);
 
                 return default(T);
             }

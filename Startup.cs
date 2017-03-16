@@ -3,12 +3,12 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
-using RoutingSample.APIRoutes;
-using RoutingSample.Models;
 using Microsoft.EntityFrameworkCore;
+using AspNetCoreBlogService.Controllers;
+using AspNetCoreBlogService.Data.Extensions;
+using AspNetCoreBlogService.Data;
 
-
-namespace RoutingSample
+namespace AspNetCoreBlogService
 {
     public class Startup
     {
@@ -44,8 +44,8 @@ namespace RoutingSample
                  context.EnsureSeedData();
             }
 
-            var r = new Router().Routes(app);
-            app.UseRouter(r);
+            var bc = new BlogController().Routes(app);
+            app.UseRouter(bc);
         }
     }
 }

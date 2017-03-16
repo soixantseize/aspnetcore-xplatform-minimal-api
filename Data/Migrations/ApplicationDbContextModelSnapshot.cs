@@ -1,8 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
-using RoutingSample.Models;
 
-namespace RoutingSample.Migrations
+namespace AspNetCoreBlogService.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
     partial class ApplicationDbContextModelSnapshot : ModelSnapshot
@@ -12,16 +11,18 @@ namespace RoutingSample.Migrations
             modelBuilder
                 .HasAnnotation("ProductVersion", "1.0.0-rtm-21431");
 
-            modelBuilder.Entity("RoutingSample.Models.StoredValue", b =>
+            modelBuilder.Entity("RoutingSample.Data.Entities.BlogArticle", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<string>("Value");
+                    b.Property<string>("ArticleTitle");
+
+                    b.Property<string>("ArticleContent");
 
                     b.HasKey("Id");
-
-                    b.ToTable("StoredValues");
+                    //Table name must be same as DbSet
+                    b.ToTable("BlogArticles");
                 });
         }
     }
