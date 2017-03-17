@@ -26,14 +26,14 @@ This project borrows heavily from the following repos:
     * Successfull launches on Windows (Windows7), Mac (OSX 10.11.13), and Linux (CentOS 7.2.1511)
 2. Install PostgreSQL (https://www.postgresql.org/)
     * Successfull CRUD operations on Windows (PostgreSQL 9.4.5) and Mac (PostgreSQL 9.5.2)
-3. Update lines 22 and 23 in the file aspnetcore-routing-standalone/Data/ApplicationDbContext.cs with your PostgreSQL user name and password
+3. Update lines 22 and 23 in the file [Data/ApplicationDbContext.cs](https://github.com/hatoro/aspnetcore-xplatform-json-api/blob/master/Data/ApplicatonDbContext.cs) with your PostgreSQL user name and password
 
 To run application
 
 1. Download repository
 2. Open command prompt and navigate to repository
 3. Run command "dotnet restore"
-   * Please create new [issue](https://github.com/hatoro/aspnetcore-routing-portable-microservice/issues/new?title=Restore_Issue&assignee=hatoro&body=My%20Platform:______<br/>%20Operating%20System:_______<br/>%20DotNet%20Core%20Version:_____) if you are having trouble downloading dependencies
+   * Please create new [issue](https://github.com/hatoro/aspnetcore-xplatform-json-api/issues/new?title=Restore_Issue&assignee=hatoro&body=My%20Platform:______<br/>%20Operating%20System:_______<br/>%20DotNet%20Core%20Version:_____) if you are having trouble downloading dependencies
 4. Run command "dotnet run"
 5. Use Postman to send JSON GET, POST, PUT, and DELETE requests.
    * `GET http://localhost:5000/blog`<br/>
