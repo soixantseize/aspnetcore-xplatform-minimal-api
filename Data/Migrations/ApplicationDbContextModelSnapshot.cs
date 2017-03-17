@@ -11,7 +11,7 @@ namespace AspNetCoreBlogService.Data.Migrations
             modelBuilder
                 .HasAnnotation("ProductVersion", "1.0.0-rtm-21431");
 
-            modelBuilder.Entity("RoutingSample.Data.Entities.BlogArticle", b =>
+            modelBuilder.Entity("AspNetCoreBlogService.Data.Entities.BlogArticle", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
