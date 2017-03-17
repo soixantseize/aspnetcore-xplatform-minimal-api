@@ -1,16 +1,12 @@
-# ASP.Net Core Routing Cross Platform Microservice
-
-* Are you tired of downloading Asp.Net Core repositories that fail to run? 
-* Do you prefer a text editor over an IDE? 
-* Do you wish the same code would run on a Windows, Mac, or a Linux machine?
+# ASP.Net Core xPlatform JSON API
 
 ### WHAT
 
-An ASP.Net Core HTTP routing microservice that is lightweight, no MVC, and cross-platform, no IIS.  Create, read, update, and write to your PostgreSQL database out of the box thanks to [Npgsql](http://www.npgsql.org/) driver and EF Core dependency injection.  Includes data migration script that runs on startup and seeds initial data. Get started right away!
+ASP.Net Core JSON API that is lightweight, no MVC, and cross-platform, no IIS.  Create, read, update, and write to your PostgreSQL database out of the box thanks to [Npgsql](http://www.npgsql.org/) driver and EF Core dependency injection.  Includes data migration script that runs on startup and seeds initial data. Get started right away!
 
 ### WHY
 
-I loved the simplicity and portability of spinning up a RESTful app built on NodeJS and Express, only to yearn for the possibility in .NET so that I could write code in C# and leverage tools like Entity Framework, LINQ, and Async Await.  Hello .NET Core now makes it possible!
+I loved the simplicity and portability of spinning up a RESTful app built on NodeJS and Express, only to yearn for the possibility in .NET so that I could write code in C# and leverage tools like Entity Framework, LINQ, Async Await.  Hello .NET Core now makes it possible!
 
 ### HOW
 
@@ -21,6 +17,8 @@ This project borrows heavily from the following repos:
 1. [RoutingSample](https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/routing/sample/RoutingSample)  blog post [here](https://docs.microsoft.com/en-us/aspnet/core/fundamentals/routing)
    
 2. [LightweightAPI](https://github.com/filipw/aspnetcore-api-samples/tree/master/01%20Lightweight%20API%20(no%20MVC)/LightweightApi)  blog post [here](http://www.strathweb.com/2017/01/building-microservices-with-asp-net-core-without-mvc/)
+
+3. [Weapsy](https://github.com/weapsy/weapsy)  blog post [here](http://www-lucabriguglia.rhcloud.com/weapsy/)
 
 **Prerequisites**
 
@@ -37,7 +35,7 @@ To run application
 3. Run command "dotnet restore"
    * Please create new [issue](https://github.com/hatoro/aspnetcore-routing-portable-microservice/issues/new?title=Restore_Issue&assignee=hatoro&body=My%20Platform:______<br/>%20Operating%20System:_______<br/>%20DotNet%20Core%20Version:_____) if you are having trouble downloading dependencies
 4. Run command "dotnet run"
-5. Use Postman to send JSON Get, POST, PUT, and Delete requests.
+5. Use Postman to send JSON GET, POST, PUT, and DELETE requests.
    * `GET http://localhost:5000/blog`<br/>
       {<br/>
        "Id": 1, <br/>
