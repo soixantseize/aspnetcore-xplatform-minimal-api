@@ -1,4 +1,4 @@
-# ASP.Net Core xPlatform JSON API
+# ASP.Net Core xPlatform Minimal JSON API
 
 ### WHAT
 
