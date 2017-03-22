@@ -1,4 +1,4 @@
-# ASP.Net Core xPlatform Minimal Rest API
+# ASP.Net Core xPlatform Minimal API
 
 ### WHAT
 
